@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="build" default="jar">
+
+	<description>
+		This ant-script automates the build of Eduras? Edulog
+		library.
+	</description>
+
+	<property name="src" value="src" />
+	<property name="libs" value="lib" />
+	<property name="build" value="bin" />
+	<property name="jars" value="jar" />
+	<property name="exclude" value="**/unittests/*" />
+
+	<target name="clean" description="Cleans output folders for class and jar files.">
+		<delete dir="${build}" />
+		<delete dir="${jars}" />
+	</target>
+
+	<target name="compile" description="Compiles java classes.">
+		<mkdir dir="${build}" />
+		<javac srcdir="${src}" destdir="${build}" includeAntRuntime="false">
+			<include name="**/*.java" />
+			<exclude name="${exclude}" />
+		</javac>
+	</target>
+
+	<target name="jar" depends="compile" description="Creates jar library.">
+		<mkdir dir="${jars}" />
+		<jar destfile="${jars}/edulog.jar" excludes="**/unittests/**"
+			basedir="${build}">
+		</jar>
+	</target>
+
+</project> 
