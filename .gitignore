@@ -5,7 +5,6 @@
 *~*
 *.vpp.working
 
-
 # Compiled source #
 ###################
 *.com
@@ -14,6 +13,8 @@
 *.exe
 *.o
 *.so
+bin/
+jar/
 
 # Packages #
 ############
@@ -37,7 +38,7 @@
 # User specific stuff #
 ######################
 org.eclipse.jdt.core.prefs
-#.classpath
+.metadata
 
 # OS generated files #
 ######################
@@ -57,3 +58,4 @@ logfile.txt*
 *.log
 *.lck
 *.log*
+
