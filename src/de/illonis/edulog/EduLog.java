@@ -27,6 +27,7 @@ public final class EduLog {
 	public final static int VERSION = 2;
 
 	private final static String DEFAULT_LOG_FILE = "logfile.txt";
+	private final static int DEFAULT_FILE_SIZE = 32384;
 	private static Level logLimit = Level.WARNING;
 	private static long startTime = 0;
 
@@ -36,14 +37,16 @@ public final class EduLog {
 
 	/**
 	 * Initializes EduLog with given logfile. By default, logging threshold is
-	 * set to WARNING.
+	 * set to ALL.
 	 * 
 	 * @param logFileName
 	 *            the name of the logfile.
+	 * @param maxSize
+	 *            the maximum size of the log file.
 	 * @throws IOException
 	 *             if creation of logfile failed.
 	 */
-	public static void init(String logFileName) throws IOException {
+	public static void init(String logFileName, int maxSize) throws IOException {
 		startTime = System.currentTimeMillis();
 		Logger logger = Logger.getLogger("");
 		logger.setLevel(Level.ALL);
@@ -56,7 +59,7 @@ public final class EduLog {
 		consoleHandler.setFormatter(new LogFormatter());
 		consoleHandler.setLevel(Level.ALL);
 		logger.addHandler(consoleHandler);
-		fileTxt = new FileHandler(logFileName, 8096, 1, true);
+		fileTxt = new FileHandler(logFileName, maxSize, 1, true);
 		// create txt Formatter
 		formatterTxt = new LogFormatter();
 		fileTxt.setFormatter(formatterTxt);
@@ -64,6 +67,20 @@ public final class EduLog {
 		logger.addHandler(fileTxt);
 		logger.info("Logging started. Logfile: " + logFileName);
 		setBasicLogLimit(Level.ALL);
+	}
+
+	/**
+	 * Initializes EduLog using the given logfile name and the default file
+	 * size. By default, logging threshold is set to ALL.
+	 * 
+	 * @param logFileName
+	 *            the name of the logfile.
+	 * @throws IOException
+	 *             if creation of logfile failed.
+	 * @see #init(String,int)
+	 */
+	public static void init(String logFileName) throws IOException {
+		init(logFileName, DEFAULT_FILE_SIZE);
 	}
 
 	static long getStartTime() {
@@ -76,10 +93,10 @@ public final class EduLog {
 	 * 
 	 * @throws IOException
 	 *             if creation of logfile failed.
-	 * @see #init(String)
+	 * @see #init(String,int)
 	 */
 	public static void init() throws IOException {
-		init(DEFAULT_LOG_FILE);
+		init(DEFAULT_LOG_FILE, DEFAULT_FILE_SIZE);
 	}
 
 	/**
