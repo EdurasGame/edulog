@@ -63,9 +63,7 @@ public final class EduLog {
 		fileTxt.setLevel(Level.ALL);
 		logger.addHandler(fileTxt);
 		logger.info("Logging started. Logfile: " + logFileName);
-		setBasicLogLimit(Level.WARNING);
-		setFileLogLimit(Level.WARNING);
-		setConsoleLogLimit(Level.WARNING);
+		setBasicLogLimit(Level.ALL);
 	}
 
 	static long getStartTime() {
