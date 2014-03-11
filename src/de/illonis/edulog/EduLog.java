@@ -34,6 +34,7 @@ public final class EduLog {
 	private static FileHandler fileTxt;
 	private static ConsoleHandler consoleHandler;
 	private static LogFormatter formatterTxt;
+	private static String currentLogFile;
 
 	/**
 	 * Initializes EduLog with given logfile. By default, logging threshold is
@@ -65,8 +66,18 @@ public final class EduLog {
 		fileTxt.setFormatter(formatterTxt);
 		fileTxt.setLevel(Level.ALL);
 		logger.addHandler(fileTxt);
+		currentLogFile = logFileName;
 		logger.info("Logging started. Logfile: " + logFileName);
 		setBasicLogLimit(Level.ALL);
+	}
+
+	/**
+	 * Returns the name of the logfile used.
+	 * 
+	 * @return log file name.
+	 */
+	public static String getCurrentLogFile() {
+		return currentLogFile;
 	}
 
 	/**
