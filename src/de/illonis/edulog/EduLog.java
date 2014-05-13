@@ -60,6 +60,7 @@ public final class EduLog {
 		consoleHandler.setFormatter(new LogFormatter());
 		consoleHandler.setLevel(Level.ALL);
 		logger.addHandler(consoleHandler);
+		SubdirFileHandler.createDir();
 		fileTxt = new SubdirFileHandler(SubdirFileHandler.LOG_DIR + "/"
 				+ logFileName, maxSize, 1, true);
 		// create txt Formatter

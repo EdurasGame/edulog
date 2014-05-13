@@ -31,11 +31,11 @@ public class PathFinder {
 					.getCodeSource();
 			if (source != null) {
 				URL url2 = source.getLocation();
-				return new URL(url2, "../");
+				return url2;
 			} else {
 				URL url = ClassLoader.getSystemClassLoader().getResource(".");
 				if (url != null) {
-					URL parent = new URL(url, "../../");
+					URL parent = new URL(url, "../");
 					return parent;
 				} else {
 					throw new RuntimeException(

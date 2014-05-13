@@ -12,16 +12,18 @@ public class SubdirFileHandler extends FileHandler {
 
 	public final static String LOG_DIR = "logs";
 
-	static {
+	public static void createDir() {
 		URI logDir = PathFinder.findFile(LOG_DIR);
 		Path p = Paths.get(logDir);
 		try {
-			System.out.println("creating dir...");
+			System.out.println("creating dir at " + p);
 			Files.createDirectory(p);
+			System.out.println("dir created");
 		} catch (FileAlreadyExistsException e) {
-
+			System.out.println("dir exists. no problem");
 		} catch (IOException e) {
-			System.err.println("Could not create logfile directory.");
+			System.out.println("Could not create logfile directory.");
+			e.printStackTrace();
 		}
 	}
 
