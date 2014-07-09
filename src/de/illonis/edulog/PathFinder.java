@@ -30,10 +30,10 @@ public class PathFinder {
 			CodeSource source = PathFinder.class.getProtectionDomain()
 					.getCodeSource();
 			if (source != null) {
-				URL url2 = source.getLocation();
+				URL url2 = new URL(source.getLocation(), "../");
 				return url2;
 			} else {
-				URL url = ClassLoader.getSystemClassLoader().getResource(".");
+				URL url = ClassLoader.getSystemClassLoader().getResource(".W");
 				if (url != null) {
 					URL parent = new URL(url, "../");
 					return parent;

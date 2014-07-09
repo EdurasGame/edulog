@@ -17,8 +17,8 @@ public class SubdirFileHandler extends FileHandler {
 		Path p = Paths.get(logDir);
 		try {
 			System.out.println("creating dir at " + p);
-			Files.createDirectory(p);
-			System.out.println("dir created");
+			Path logPath = Files.createDirectory(p);
+			System.out.println("dir created at " + logPath);
 		} catch (FileAlreadyExistsException e) {
 			System.out.println("dir exists. no problem");
 		} catch (IOException e) {
