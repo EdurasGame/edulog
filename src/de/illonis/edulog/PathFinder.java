@@ -33,7 +33,7 @@ public class PathFinder {
 				URL url2 = new URL(source.getLocation(), "../");
 				return url2;
 			} else {
-				URL url = ClassLoader.getSystemClassLoader().getResource(".W");
+				URL url = ClassLoader.getSystemClassLoader().getResource(".");
 				if (url != null) {
 					URL parent = new URL(url, "../");
 					return parent;
