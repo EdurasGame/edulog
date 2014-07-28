@@ -37,8 +37,8 @@ public final class EduLog {
 	private static String currentLogFile;
 
 	/**
-	 * Initializes EduLog with given logfile. By default, logging threshold is
-	 * set to ALL.
+	 * Initializes EduLog with given logfile located in the default location. By
+	 * default, logging threshold is set to ALL.
 	 * 
 	 * @param logFileName
 	 *            the name of the logfile.
@@ -48,6 +48,25 @@ public final class EduLog {
 	 *             if creation of logfile failed.
 	 */
 	public static void init(String logFileName, int maxSize) throws IOException {
+		init("", logFileName, maxSize);
+	}
+
+	/**
+	 * Initializes EduLog with given logfile. By default, logging threshold is
+	 * set to ALL.
+	 * 
+	 * @param directoryPath
+	 *            the path to the directory to create the logfile at. must be
+	 *            absolute
+	 * @param logFileName
+	 *            the name of the logfile.
+	 * @param maxSize
+	 *            the maximum size of the log file.
+	 * @throws IOException
+	 *             if creation of logfile failed.
+	 */
+	public static void init(String directoryPath, String logFileName,
+			int maxSize) throws IOException {
 		startTime = System.currentTimeMillis();
 		Logger logger = Logger.getLogger("");
 		logger.setLevel(Level.ALL);
@@ -60,9 +79,16 @@ public final class EduLog {
 		consoleHandler.setFormatter(new LogFormatter());
 		consoleHandler.setLevel(Level.ALL);
 		logger.addHandler(consoleHandler);
-		SubdirFileHandler.createDir();
-		fileTxt = new SubdirFileHandler(SubdirFileHandler.LOG_DIR + "/"
-				+ logFileName, maxSize, 1, true);
+
+		if (directoryPath != null && !directoryPath.isEmpty()) {
+			SubdirFileHandler.createDir(directoryPath);
+			fileTxt = new SubdirFileHandler(directoryPath + "/" + logFileName,
+					maxSize, 1, true);
+		} else {
+			SubdirFileHandler.createDir();
+			fileTxt = new SubdirFileHandler(SubdirFileHandler.LOG_DIR + "/"
+					+ logFileName, maxSize, 1, true);
+		}
 		// create txt Formatter
 		formatterTxt = new LogFormatter();
 		fileTxt.setFormatter(formatterTxt);

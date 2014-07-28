@@ -10,7 +10,8 @@ public class LogTester {
 
 	public static void main(String[] args) {
 		try {
-			EduLog.init();
+			EduLog.init(LogTester.class.getClassLoader().getResource(".")
+					.getPath(), "testLog", 5555555);
 			EduLog.setConsoleLogLimit(Level.SEVERE);
 		} catch (IOException e) {
 			e.printStackTrace();

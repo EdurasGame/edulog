@@ -56,9 +56,28 @@ public class PathFinder {
 	 *            the file name.
 	 * @return a URI pointing to that file.
 	 */
-	public static URI findFile(String fileName) {
+	public static URI findFileRelative(String fileName) {
 		try {
 			URI uri = new URL(PathFinder.getBaseDir(), fileName).toURI();
+			return uri;
+		} catch (MalformedURLException e) {
+			L.log(Level.SEVERE, "Malformed URL!", e);
+		} catch (URISyntaxException e) {
+			L.log(Level.SEVERE, "URISyntaxException", e);
+		}
+		return null;
+	}
+
+	/**
+	 * Returns an url that points to a the file specified
+	 * 
+	 * @param fileName
+	 *            the file name.
+	 * @return a URI pointing to that file.
+	 */
+	public static URI findFileAbsolute(String fileName) {
+		try {
+			URI uri = new URL("file://" + fileName).toURI();
 			return uri;
 		} catch (MalformedURLException e) {
 			L.log(Level.SEVERE, "Malformed URL!", e);
