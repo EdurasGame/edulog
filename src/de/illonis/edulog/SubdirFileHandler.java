@@ -52,7 +52,8 @@ public class SubdirFileHandler extends FileHandler {
 	}
 
 	public static void createDir(String directoryPath) {
-		URI logDir = PathFinder.findFileAbsolute(directoryPath);
+		String logDir = PathFinder.findFileAbsolute(directoryPath).getPath();
+		System.out.println(logDir);
 		Path p = Paths.get(logDir);
 		try {
 			System.out.println("creating dir at " + p);

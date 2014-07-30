@@ -75,14 +75,12 @@ public class PathFinder {
 	 *            the file name.
 	 * @return a URI pointing to that file.
 	 */
-	public static URI findFileAbsolute(String fileName) {
+	public static URL findFileAbsolute(String fileName) {
 		try {
-			URI uri = new URL("file://" + fileName).toURI();
-			return uri;
+			URL url = new URL("file", "/" , fileName);
+			return url;
 		} catch (MalformedURLException e) {
 			L.log(Level.SEVERE, "Malformed URL!", e);
-		} catch (URISyntaxException e) {
-			L.log(Level.SEVERE, "URISyntaxException", e);
 		}
 		return null;
 	}
