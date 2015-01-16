@@ -83,11 +83,11 @@ public final class EduLog {
 		if (directoryPath != null && !directoryPath.isEmpty()) {
 			SubdirFileHandler.createDir(directoryPath);
 			fileTxt = new SubdirFileHandler(directoryPath + "/" + logFileName,
-					maxSize, 1, true);
+					maxSize, 3, true);
 		} else {
 			SubdirFileHandler.createDir();
 			fileTxt = new SubdirFileHandler(SubdirFileHandler.LOG_DIR + "/"
-					+ logFileName, maxSize, 1, true);
+					+ logFileName, maxSize, 3, true);
 		}
 		// create txt Formatter
 		formatterTxt = new LogFormatter();
