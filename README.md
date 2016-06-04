@@ -7,7 +7,7 @@ EduLog is based on the Java built-in logging methods.
 
 # From a programmer's point of view
 
-For a detailed documentation, please consider the [JavaDoc]().
+For a detailed documentation, please consider the [JavaDoc](http://edurasgame.github.io/edulog).
 
 ## Building
 You can use the provided ant-script (`build.xml`) to build a `jar`-file and include it into your project.
